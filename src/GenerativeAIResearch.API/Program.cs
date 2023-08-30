@@ -18,8 +18,6 @@ builder.Services.AddScoped<IRequestHandler<GetCountriesRequest,
                            GetCountriesResponse>,
                            GetCountriesRequestHandler>();
 
-builder.Services.AddSingleton<CountryDataProcessor>();
-
 builder.Services.Configure<CountriesApiOptions>(
     builder.Configuration.GetSection(
         key: nameof(CountriesApiOptions)));
