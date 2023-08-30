@@ -19,9 +19,11 @@ public class CountriesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetCountriesResponse))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<GetCountriesResponse>> Get(string? filterByName, double? filterByPopulation)
+    public async Task<ActionResult<GetCountriesResponse>> Get(string? filterByName, 
+                                                              double? filterByPopulation,
+                                                              string? sortOrder)
     {
-        var request = new GetCountriesRequest(filterByName, filterByPopulation);
+        var request = new GetCountriesRequest(filterByName, filterByPopulation, sortOrder);
         var response = await _getCountiresHandler.Handle(request);
         if (!response.IsSuccess)
         {
