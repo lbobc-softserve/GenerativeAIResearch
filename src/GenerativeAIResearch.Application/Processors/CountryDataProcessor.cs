@@ -10,4 +10,9 @@ public class CountryDataProcessor
                              .Contains(filter, StringComparison.InvariantCultureIgnoreCase))
                              .ToList();
     }
+
+    public List<GetCountryResponse> FilterByPopulation(GetCountriesResponse data, double filter)
+    {
+        return data.Countries.Where(x => x.Population < filter * 1000000).ToList();
+    }
 }

@@ -18,9 +18,14 @@ public class GetCountriesRequestHandler : IRequestHandler<GetCountriesRequest, G
     public async Task<GetCountriesResponse> Handle(GetCountriesRequest request)
     {
         var httpResponse = await _httpClient.GetAsync();
-        if(request.Filter!= null)
+        if (request.FilterByName != null)
         {
-            httpResponse.Countries = _processor.FilterByCountryName(httpResponse, request.Filter);
+            httpResponse.Countries = _processor.FilterByCountryName(httpResponse, request.FilterByName);
+        }
+        if (request.FilterByPopulation != null)
+        {
+
+            httpResponse.Countries = _processor.FilterByPopulation(httpResponse, (double)request.FilterByPopulation);
         }
         return httpResponse;
     }
