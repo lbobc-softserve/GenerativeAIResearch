@@ -2,6 +2,7 @@ using GenerativeAIResearch.Application.Client;
 using GenerativeAIResearch.Application.Config;
 using GenerativeAIResearch.Application.Handlers;
 using GenerativeAIResearch.Application.Models;
+using GenerativeAIResearch.Application.Processors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<CountriesApiClient>();
 builder.Services.AddScoped<IRequestHandler<GetCountriesRequest,
-                           IEnumerable<GetCountryResponse>>,
+                           GetCountriesResponse>,
                            GetCountriesRequestHandler>();
+
+builder.Services.AddSingleton<CountryDataProcessor>();
 
 builder.Services.Configure<CountriesApiOptions>(
     builder.Configuration.GetSection(

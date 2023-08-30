@@ -19,10 +19,19 @@ public class CountriesApiClient
         _httpClient.BaseAddress = uri;
     }
 
-    public async Task<IEnumerable<GetCountryResponse>> GetAsync()
+    public async Task<GetCountriesResponse> GetAsync()
     {
         var response = await _httpClient.GetAsync("/v3.1/all");
+        if (!response.IsSuccessStatusCode)
+        {
+            return new GetCountriesResponse() { IsSuccess = false };
+        }
         var result = JsonSerializer.Deserialize<IEnumerable<GetCountryResponse>>(response.Content.ReadAsStream());
-        return result;
+        var countriesResponse = new GetCountriesResponse()
+        {
+            IsSuccess = true,
+            Countries = result!
+        };
+        return countriesResponse;
     }
 }

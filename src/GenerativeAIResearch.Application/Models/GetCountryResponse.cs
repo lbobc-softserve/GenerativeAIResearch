@@ -9,4 +9,5 @@ public class GetCountryResponse
 
     [JsonPropertyName("population")]
     public long Population { get; set; }
+    
 }
