@@ -2,7 +2,6 @@ using GenerativeAIResearch.Application.Client;
 using GenerativeAIResearch.Application.Config;
 using GenerativeAIResearch.Application.Handlers;
 using GenerativeAIResearch.Application.Models;
-using GenerativeAIResearch.Application.Processors;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -9,13 +9,11 @@ namespace GenerativeAIResearch.Application.Client;
 public class CountriesApiClient
 {
     private readonly HttpClient _httpClient;
-    private readonly CountriesApiOptions _options;
 
     public CountriesApiClient(HttpClient httpClient, IOptions<CountriesApiOptions> options)
     {
         _httpClient = httpClient;
-        _options = options.Value;
-        var uri = new Uri(_options.Url);
+        var uri = new Uri(options.Value.Url);
         _httpClient.BaseAddress = uri;
     }
 
