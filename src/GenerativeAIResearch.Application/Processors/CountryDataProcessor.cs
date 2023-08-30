@@ -28,4 +28,9 @@ public static class CountryDataProcessor
         }
         return data.Countries;
     }
+
+    public static IEnumerable<GetCountryResponse> Limit(GetCountriesResponse data, int limit)
+    {
+        return data.Countries.Take(limit);
+    }
 }

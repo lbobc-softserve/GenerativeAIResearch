@@ -21,9 +21,14 @@ public class CountriesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<GetCountriesResponse>> Get(string? filterByName, 
                                                               double? filterByPopulation,
-                                                              string? sortOrder)
+                                                              string? sortOrder,
+                                                              int? limit)
     {
-        var request = new GetCountriesRequest(filterByName, filterByPopulation, sortOrder);
+        var request = new GetCountriesRequest(filterByName,
+                                              filterByPopulation,
+                                              sortOrder,
+                                              limit);
+
         var response = await _getCountiresHandler.Handle(request);
         if (!response.IsSuccess)
         {

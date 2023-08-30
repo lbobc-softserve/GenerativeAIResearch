@@ -25,9 +25,13 @@ public class GetCountriesRequestHandler : IRequestHandler<GetCountriesRequest, G
 
             httpResponse.Countries = CountryDataProcessor.FilterByPopulation(httpResponse, (double)request.FilterByPopulation);
         }
-        if(request.sortOrder != null)
+        if(request.SortOrder != null)
         {
-            httpResponse.Countries = CountryDataProcessor.SortByCountryName(httpResponse, request.sortOrder);
+            httpResponse.Countries = CountryDataProcessor.SortByCountryName(httpResponse, request.SortOrder);
+        }
+        if(request.Limit != null)
+        {
+            httpResponse.Countries = CountryDataProcessor.Limit(httpResponse, (int)request.Limit);
         }
 
         return httpResponse;
